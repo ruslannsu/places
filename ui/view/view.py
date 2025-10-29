@@ -6,26 +6,38 @@ class View(QMainWindow):
         self.setWindowTitle(app_title)  
         self.setFixedSize(view_width, view_height)
 
-        central_widget = QWidget()
-        self.setCentralWidget(central_widget)
+        _central_widget = QWidget()
+        self.setCentralWidget(_central_widget)
         
-        layout = QVBoxLayout()
+        _layout = QVBoxLayout()
         
         title = QLabel('Что-нибудь надо написать...')
         title.setStyleSheet("font-size: 20px; font-weight: bold;")
-        layout.addWidget(title)
+        _layout.addWidget(title)
         
-        self.text_input = QLineEdit()
-        self.text_input.setPlaceholderText(' ') 
-        layout.addWidget(self.text_input)
+        self._text_input = QLineEdit()
+        self._text_input.setPlaceholderText('A') 
+        _layout.addWidget(self._text_input)
+
+        self._text_button = QPushButton()
+        self._text_button.setText('bt')
+        _layout.addWidget(self._text_button)
         
         self.output_area = QTextEdit()
         self.output_area.setPlaceholderText("//")
-        layout.addWidget(self.output_area)
+        _layout.addWidget(self.output_area)
         
-        central_widget.setLayout(layout)
+        _central_widget.setLayout(_layout)
 
         self.show()
 
-    def set_text_input_handler(self, handler):
-        pass
+    def set_text_button_handler(self, handler) -> None:
+        self._text_button.clicked.connect(handler)
+
+    def get_text_input(self) -> str:
+        return self._text_input.text()
+    
+    def set_text_placeholder(self, text: str) -> None:
+        self._text_input.clear()
+        self._text_input.setPlaceholderText(text)
+        
