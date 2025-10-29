@@ -16,15 +16,15 @@ class View(QMainWindow):
         _layout.addWidget(title)
         
         self._text_input = QLineEdit()
-        self._text_input.setPlaceholderText('A') 
+        self._text_input.setPlaceholderText('Сюда нужно что-то написать') 
         _layout.addWidget(self._text_input)
 
         self._text_button = QPushButton()
-        self._text_button.setText('bt')
+        self._text_button.setText('Искать')
         _layout.addWidget(self._text_button)
         
         self.output_area = QTextEdit()
-        self.output_area.setPlaceholderText("//")
+        self.output_area.setPlaceholderText("......... ")
         _layout.addWidget(self.output_area)
         
         _central_widget.setLayout(_layout)
@@ -37,7 +37,12 @@ class View(QMainWindow):
     def get_text_input(self) -> str:
         return self._text_input.text()
     
+    def get_text_input_placeholder(self):
+        return self._text_input.placeholderText()
+    
     def set_text_placeholder(self, text: str) -> None:
         self._text_input.clear()
         self._text_input.setPlaceholderText(text)
         
+    def set_area_text(self, text: str):
+        self.output_area.setText(text)    
