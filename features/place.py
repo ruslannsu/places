@@ -11,7 +11,7 @@ class PlaceFinder:
             params = {'q': place, 'key': self._place_api_key, 'limit': 3}
 
             async with session.get(url=url, params=params) as response:
-                self.resp  = await response.json()
+                self.resp = await response.json()
                 names = [(hit['name'], hit['point']) for hit in self.resp['hits']]
                 return names
 
@@ -20,13 +20,4 @@ class PlaceFinder:
         results = await asyncio.gather(task)
         
         return results
-
-
-        
-        
-
-
-
-
-
-
+    
